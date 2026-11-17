@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "ledger-mcp": {
+      "command": "./bin/ledger-mcp",
+      "args": [],
+      "env": {}
+    }
+  }
+}
