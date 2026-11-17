@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "name": "ledger-agent",
+  "displayName": "LedgerAgent",
+  "version": "2.0.0",
+  "description": "Self-directed autonomous earning agent with open-ended discovery, ROI gating, browser hands, and persistent memory.",
+  "compat": {
+    "source": "native",
+    "manifestDir": ".muse-plugin"
+  },
+  "capabilities": {
+    "skills": [
+      { "id": "setup", "path": "skills/setup/SKILL.md", "enabledDefault": true },
+      { "id": "plan", "path": "skills/plan/SKILL.md", "enabledDefault": true },
+      { "id": "run", "path": "skills/run/SKILL.md", "enabledDefault": true },
+      { "id": "wallet", "path": "skills/wallet/SKILL.md", "enabledDefault": true },
+      { "id": "deposit", "path": "skills/deposit/SKILL.md", "enabledDefault": true }
+    ],
+    "commands": [],
+    "hooks": [],
+    "mcpServers": [
+      { "id": "ledger-mcp", "transport": "stdio", "command": ["./bin/ledger-mcp"] }
+    ],
+    "reminders": []
+  }
+}
