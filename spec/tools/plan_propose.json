@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "plan_propose",
+  "type": "object",
+  "properties": {
+    "title": { "type": "string" },
+    "thesis": { "type": "string" },
+    "workflow_steps": { "type": "array", "items": { "type": "string" } },
+    "unit_economics": {
+      "type": "object",
+      "properties": {
+        "expected_gross_usd": { "type": "number" },
+        "cost_basis_usd": { "type": "number" },
+        "estimated_hours": { "type": "number" },
+        "min_hourly_yield_usd": { "type": "number" }
+      },
+      "required": ["expected_gross_usd", "cost_basis_usd", "estimated_hours", "min_hourly_yield_usd"]
+    },
+    "prerequisites": { "type": "array", "items": { "type": "object" } },
+    "envelope": {
+      "type": "object",
+      "properties": {
+        "max_task_usd": { "type": "number" },
+        "max_day_usd": { "type": "number" },
+        "approval_above_usd": { "type": "number" },
+        "allowed_domains": { "type": "array", "items": { "type": "string" } },
+        "horizon_days": { "type": "integer" }
+      }
+    },
+    "evidence_urls": { "type": "array", "items": { "type": "string" } }
+  },
+  "required": ["title", "thesis", "workflow_steps"],
+  "output": {
+    "type": "object",
+    "properties": {
+      "accepted": { "type": "boolean" },
+      "effective_hourly_usd": { "type": "number" },
+      "roi_multiple": { "type": "number" },
+      "rejection_reasons": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
