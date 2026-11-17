@@ -1,0 +1,3 @@
+[mcp_servers.ledger-mcp]
+command = "./bin/ledger-mcp"
+args = []
