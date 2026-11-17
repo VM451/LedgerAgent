@@ -1,0 +1,13 @@
+{
+  "name": "ledger-agent",
+  "version": "2.0.0",
+  "displayName": "LedgerAgent",
+  "description": "Portable Agent Plugin that turns any MCP-capable coding agent into a self-directed ROI-aware earning engine with Agent Reach eyes and Agent Browser hands.",
+  "license": "Proprietary",
+  "skills": ["setup", "plan", "run", "wallet", "deposit"],
+  "mcpServers": [
+    { "id": "ledger-mcp", "transport": "stdio", "command": "./bin/ledger-mcp" }
+  ],
+  "platforms": ["claude-code", "qwen-code", "codex-cli", "antigravity"],
+  "homepage": "https://github.com/the-unique/LedgerAgent"
+}
