@@ -1,0 +1,7 @@
+{
+  "name": "ledger-agent",
+  "version": "2.0.0",
+  "description": "LedgerAgent for Claude Code — reuse Muse native shim. Install via marketplace or manual.",
+  "skills": ["setup", "plan", "run", "wallet", "deposit"],
+  "mcpServers": { "ledger-mcp": { "command": "./bin/ledger-mcp", "args": [] } }
+}
