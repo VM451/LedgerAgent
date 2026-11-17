@@ -1,0 +1,7 @@
+{
+  "name": "ledger-agent",
+  "version": "2.0.0",
+  "description": "LedgerAgent Gemini extension (Qwen Code / Antigravity).",
+  "mcpServers": { "ledger-mcp": { "command": "./bin/ledger-mcp", "args": [] } },
+  "skillsPath": "./skills"
+}
