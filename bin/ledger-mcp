@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+# LedgerAgent launcher — resolves platform binary, falls back to cargo run
+# R8.1: ./bin/ledger-mcp is one token, no shell string expansion, no npx.
+set -e
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+OS=$(uname -s)
+ARCH=$(uname -m)
+case "$OS" in
+  Darwin)
+    if [ "$ARCH" = "arm64" ]; then BIN="$SCRIPT_DIR/ledger-mcp-darwin-arm64"
+    else BIN="$SCRIPT_DIR/ledger-mcp-darwin-x64"; fi ;;
+  Linux)
+    if [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then BIN="$SCRIPT_DIR/ledger-mcp-linux-arm64"
+    else BIN="$SCRIPT_DIR/ledger-mcp-linux-x64"; fi ;;
+  *)
+    if command -v ledger-mcp.exe >/dev/null 2>&1; then BIN="$SCRIPT_DIR/ledger-mcp-windows-x64.exe"
+    else BIN="$SCRIPT_DIR/ledger-mcp"; fi ;;
+esac
+if [ -x "$BIN" ]; then
+  exec "$BIN" "$@"
+elif [ -x "$SCRIPT_DIR/../target/release/ledger-mcp" ]; then
+  exec "$SCRIPT_DIR/../target/release/ledger-mcp" "$@"
+elif [ -x "$SCRIPT_DIR/../target/debug/ledger-mcp" ]; then
+  exec "$SCRIPT_DIR/../target/debug/ledger-mcp" "$@"
+elif command -v cargo >/dev/null 2>&1; then
+  exec cargo run --quiet --manifest-path "$SCRIPT_DIR/../Cargo.toml" --bin ledger-mcp -- "$@"
+else
+  echo "ledger-mcp binary not found and cargo unavailable. Build with: cargo build --release" >&2
+  exit 127
+fi
